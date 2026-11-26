@@ -50,7 +50,8 @@ def main():
     saved = OUT.read_text(encoding="utf-8")
     assert saved == TEXT, "round-trip mismatch"
     check_single_line(saved)
-    print(f"wrote {len(TEXT)} chars to {OUT}")
+    # Gate counts characters, not bytes: the em-dash is 1 char / 3 bytes.
+    print(f"wrote {len(TEXT)} chars ({len(TEXT.encode('utf-8'))} bytes) to {OUT}")
 
 
 if __name__ == "__main__":
